@@ -1,0 +1,111 @@
+
+  //  public static void main(String[] args) {
+	// write your code here
+      //  System.out.println("The Sum Of These Numbers Is");
+        //int num1 =2;
+        //int num2 =4;
+        //intnum3 =7;
+        //int sum = num1+num2+num3;
+        //System.out.print(sum);
+    //}
+package com.company;
+import java.util.Objects;
+import java.util.Scanner;
+        class Library_Methods{
+                int Total_Books=5;
+                String book;
+                public String [] books = new String[100];
+                public String [] issued_books = new String[100];
+                Library_Methods() {
+                        books[0]="Maths";
+                        books[1]="English";
+                        books[2]="Urdu";
+                        books[3]="Science";
+                        books[4]="SST";
+                }
+
+                void Status(){
+                        for(int i =0;i<Total_Books;i++){
+                                System.out.println(books[i]);
+                        }
+                }
+
+                void issue(){
+                        System.out.println("Enter name of book");
+                        Scanner sc = new Scanner(System.in);
+                        book = sc.nextLine();
+                        for(int i = 0;i<Total_Books;i++){
+                                if(Objects.equals(book, books[i])){
+                                        issued_books[i]=books[i];
+                                        books[i]=book + " Already issued";
+                                        System.out.println("Book Issued Successfully");
+                                        break;
+                                }
+                                else if(i==Total_Books-1){
+                                        System.out.println("Book can't be issued\nEither book already issued or not available");
+                                }
+                                else{
+                                        continue;
+                                }
+                        }
+                }
+
+                void Return(){
+                        System.out.println("Enter name of book");
+                        Scanner sc = new Scanner(System.in);
+                        book = sc.nextLine();
+                        for(int i = 0;i<=books.length-1;i++){
+                                if(Objects.equals(books[i], book + " Already issued")){
+                                        books[i]=book;
+                                        System.out.println("Book returned Successfully");
+                                }
+
+                        }
+                }
+
+                void add_a_book(){
+                        if(Total_Books<100) {
+                                System.out.println("Enter book name");
+                                Scanner sc = new Scanner(System.in);
+                                book= sc.nextLine();
+                                Total_Books++;
+                                books[Total_Books-1]=book;
+                                System.out.println("Book successfully added");
+                        }
+                        else{
+                                System.out.println("Maximum Capacity reached");
+                        }
+
+                }
+        }
+        public class Library {
+                public static void main(String[] args) {
+                        System.out.println("Choose an opertaion\n1) Check Status of books\n" +
+                                "2) Issue a book\n3) Return a book\n4) Add a book\n5) Press any other number to exit");
+                        Library_Methods obj = new Library_Methods();
+                        Scanner sc = new Scanner(System.in);
+                        int b = sc.nextInt();
+                        while (b!=0) {
+                                switch (b) {
+                                        case 1:
+                                                obj.Status();
+                                                break;
+                                        case 2:
+                                                obj.issue();
+                                                break;
+                                        case 3:
+                                                obj.Return();
+                                                break;
+                                        case 4:
+                                                obj.add_a_book();
+                                                break;
+                                        default:
+                                                System.out.println("Exiting program");
+                                                b=0;
+                                                continue;
+                                }
+                                b=sc.nextInt();
+                        }
+                }
+
+        }
